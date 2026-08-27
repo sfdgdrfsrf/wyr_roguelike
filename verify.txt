@@ -1,0 +1,10 @@
+VALIDATION PASSED
+Total scenarios: 400
+Unique IDs: 400
+combat   : 80
+resource : 80
+utility  : 80
+narrative: 80
+wildcard : 80
+Duplicate IDs: 0
+Text limit: PASS (<256 bytes)
