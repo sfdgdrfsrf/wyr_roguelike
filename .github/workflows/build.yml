@@ -19,7 +19,6 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-          cache: 'pip'
 
       - name: Generate and verify 400 scenarios
         run: python3 tools/generate_400_scenarios.py --output scenarios.h --verify
