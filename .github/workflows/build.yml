@@ -96,26 +96,16 @@ jobs:
         with:
           name: scenarios-header
 
-      - name: Cache Android NDK
-        id: cache-ndk
-        uses: actions/cache@v4
+      - name: Setup Android NDK
+        uses: nttld/setup-ndk@v1
         with:
-          path: android-ndk-r27c
-          key: ${{ runner.os }}-ndk-r27c
-
-      - name: Install Android NDK
-        if: steps.cache-ndk.outputs.cache-hit != 'true'
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y unzip wget
-          wget -q https://google.com
-          unzip -q android-ndk-r27c-linux.zip
-
-      - name: Set NDK Environment Variable
-        run: echo "ANDROID_NDK_HOME=$PWD/android-ndk-r27c" >> "$GITHUB_ENV"
+          ndk-version: r27c
+          add-to-path: true
 
       - name: Build Android ARM64
         run: make android-arm64
+        env:
+          ANDROID_NDK_HOME: ${{ env.ANDROID_NDK_HOME }}
 
       - name: Verify ELF architecture
         run: |
